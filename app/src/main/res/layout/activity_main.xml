@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Основной лейаут. Вертикальное расположение -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_white">
+
+    <!-- Заголовок списка -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/primary_blue">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Список студентов"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+    </FrameLayout>
+
+    <!-- Список студентов.
+         Если элементов в списке нет,
+         то отображается надпись "Здесь пока пусто"
+         Если нет, то выводится список -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="219dp"
+        android:background="@color/bg_grey">
+        <TextView
+            android:id="@+id/tv_empty_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Здесь пока пусто"
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="14sp"
+            android:layout_gravity="center"
+            android:textColor="@color/text_grey" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_student_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="5dp"
+            android:visibility="gone"/>
+    </FrameLayout>
+
+    <!-- Кнопка для отображения блока добавления студента -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+        <Button
+            android:id="@+id/button_add_student"
+            android:layout_width="190dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/primary_blue"
+            android:fontFamily="@font/roboto_regular"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Добавить студента"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:cornerRadius="0dp" />
+    </FrameLayout>
+
+    <!-- Декоративрая линия -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/bg_grey" />
+
+    <!-- Блок добавления студента.
+         Изначально скрыт, а при нажати на кнопку "Добавить студента"
+         отображается блок -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/block_add_student"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/student_photo"
+            android:layout_width="135dp"
+            android:layout_height="135dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="40dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avatar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header_add_student"
+            app:shapeAppearanceOverlay="@style/Circular"/>
+
+        <TextView
+            android:id="@+id/header_add_student"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Данные студента"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/student_first_name"
+            android:layout_width="170dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="20dp"
+            android:hint="Имя"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header_add_student"/>
+
+        <EditText
+            android:id="@+id/student_second_name"
+            android:layout_width="170dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="20dp"
+            android:hint="Фамилия"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/student_first_name"/>
+
+        <Spinner
+            android:id="@+id/spinner_genders"
+            android:layout_width="170dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/student_second_name"/>
+
+        <Button
+            android:id="@+id/button_cancel_add_student"
+            android:layout_width="125dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="48dp"
+            android:backgroundTint="@color/primary_blue"
+            android:fontFamily="@font/roboto_regular"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Отменить"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:cornerRadius="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_genders"/>
+
+        <Button
+            android:id="@+id/button_save_add_student"
+            android:layout_width="125dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="24dp"
+            android:backgroundTint="@color/primary_blue"
+            android:fontFamily="@font/roboto_regular"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Сохранить"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:cornerRadius="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_genders"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Блок с профилем студента.
+         Изначально скрыт, а при нажати на студента в списке
+         отображается профиль -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/block_profile_student"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profile_student_photo"
+            android:layout_width="135dp"
+            android:layout_height="135dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="40dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avatar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header_profile_student"
+            app:shapeAppearanceOverlay="@style/Circular"/>
+
+        <TextView
+            android:id="@+id/header_profile_student"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Профиль студента"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/profile_student_first_name"
+            android:layout_width="170dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="84dp"
+            android:layout_marginEnd="20dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header_profile_student" />
+
+        <TextView
+            android:id="@+id/profile_student_second_name"
+            android:layout_width="170dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_student_first_name"
+            android:textAlignment="center"/>
+
+        <Button
+            android:id="@+id/profile_delete_student"
+            android:layout_width="125dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="43dp"
+            android:backgroundTint="@color/primary_blue"
+            android:fontFamily="@font/roboto_regular"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Удалить"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:cornerRadius="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_student_photo" />
+
+        <Button
+            android:id="@+id/profile_save_student"
+            android:layout_width="125dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="43dp"
+            android:layout_marginEnd="24dp"
+            android:backgroundTint="@color/primary_blue"
+            android:fontFamily="@font/roboto_regular"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Сохранить"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:cornerRadius="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_student_photo" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
